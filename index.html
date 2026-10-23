@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="description" content="A special birthday adventure game made with love 💕" />
+  <title>Happy Birthday! 🎂 — A Birthday Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ==================== START SCREEN ==================== -->
+  <div id="start-screen" class="screen active">
+    <div class="screen-bg"></div>
+    <div class="floating-hearts" id="start-hearts"></div>
+    <div class="start-content">
+      <div class="title-badge">🎂 Birthday Adventure 🎂</div>
+      <h1 class="game-title">For my cutie<br/><span class="title-highlight">Bunnypie</span></h1>
+      <p class="game-subtitle">Run, jump &amp; crouch<br/>to reach birthday surprise bubbie 🌸</p>
+      <div class="char-preview">
+        <img src="Asset/IdleRunNotcroped.jpeg" alt="Character" class="preview-img" id="preview-img" />
+      </div>
+      <div class="controls-hint">
+        <div class="control-row">
+          <span class="key">↑ / Space</span><span class="ctrl-label">Jump</span>
+          <span class="key">↓</span><span class="ctrl-label">Crouch</span>
+        </div>
+        <div class="control-row">
+          <span class="key touch-key">On-screen buttons</span><span class="ctrl-label">Jump / crouch</span>
+        </div>
+      </div>
+      <button id="start-btn" class="btn-main" onclick="startGame()">
+        <span>Start Adventure</span> ✨
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== GAME SCREEN ==================== -->
+  <div id="game-screen" class="screen">
+    <div id="hud">
+      <div id="hud-left">
+        <span class="hud-label">❤️ Lives</span>
+        <div id="lives-display"></div>
+      </div>
+      <div id="hud-center">
+        <div id="progress-wrap">
+          <span class="hud-label">🌸 Journey</span>
+          <div id="progress-bar-bg">
+            <div id="progress-bar-fill"></div>
+            <span id="progress-emoji">🏃</span>
+          </div>
+        </div>
+      </div>
+      <div id="hud-right">
+        <span class="hud-label">⭐ Score</span>
+        <span id="score-display">0</span>
+        <button id="pause-btn" onclick="togglePause()">⏸</button>
+      </div>
+    </div>
+
+    <canvas id="game-canvas"></canvas>
+
+    <!-- On-screen controls work with touch or mouse -->
+    <div id="touch-controls">
+      <button id="touch-jump" class="touch-btn" aria-label="Jump">⬆️<small>Jump</small></button>
+      <button id="touch-crouch" class="touch-btn" aria-label="Crouch">⬇️<small>Crouch</small></button>
+    </div>
+  </div>
+
+  <!-- ==================== PAUSE SCREEN ==================== -->
+  <div id="pause-screen" class="screen overlay-screen">
+    <div class="overlay-box">
+      <div class="overlay-emoji">⏸️</div>
+      <h2>Paused</h2>
+      <p>Jangan ragequit yawh bubii :D🌸</p>
+      <button class="btn-main" onclick="togglePause()">Resume ▶️</button>
+      <button class="btn-secondary" onclick="restartGame()">Restart 🔄</button>
+      <button class="btn-secondary" onclick="goToStart()">Menu 🏠</button>
+    </div>
+  </div>
+
+  <!-- ==================== GAME OVER SCREEN ==================== -->
+  <div id="gameover-screen" class="screen overlay-screen">
+    <div class="overlay-box">
+      <div class="overlay-emoji">💔</div>
+      <h2>Oops!</h2>
+      <p id="gameover-msg">You stumbled, but you can do it!</p>
+      <p class="score-final">Score: <span id="go-score">0</span> ⭐</p>
+      <button class="btn-main" onclick="restartGame()">Try Again 💪</button>
+      <button class="btn-secondary" onclick="goToStart()">Menu 🏠</button>
+    </div>
+  </div>
+
+  <!-- ==================== BIRTHDAY ENDING ==================== -->
+  <div id="birthday-screen" class="screen">
+    <div id="birthday-bg"></div>
+    <div id="confetti-container"></div>
+    <div id="birthday-content">
+      <div id="cake-area">
+        <canvas id="cake-canvas" width="300" height="300"></canvas>
+      </div>
+      <div id="birthday-message-box">
+        <h1 id="birthday-title">🎂 Happy Birthday! 🎂</h1>
+        <!-- ===================================================
+             EDIT YOUR BIRTHDAY MESSAGE HERE ↓
+             =================================================== -->
+        <div id="birthday-message">
+          <p class="bday-line bday-line-1">To the most beautiful girl in my world,</p>
+          <p class="bday-line bday-line-2">Happy Birthday, my love bubipiee! 🌸</p>
+          <p class="bday-line bday-line-3">Thank you for filling every day with joy,<br/>warmth, and your wonderful smile.</p>
+          <p class="bday-line bday-line-4">I love you more than words can say. 💕</p>
+          <p class="bday-line bday-line-5">- Maaf yawh characternya aga bruik tpi lucu siwh hehe 🌹</p>
+        </div>
+        <!-- ===================================================
+             END OF BIRTHDAY MESSAGE
+             =================================================== -->
+      </div>
+      <div id="ending-chars">
+        <img src="Asset/Celebrate.jpeg" alt="Celebrating!" class="ending-char" id="end-char" />
+      </div>
+      <button class="btn-main btn-ending" onclick="restartGame()">Play Again 🎮</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
